@@ -4,6 +4,7 @@ class Book {
   final String bookId;
   final String title;
   final String author;
+  final String bookType;
   final String genre;
   final String description;
   final String coverImg;
@@ -13,6 +14,7 @@ class Book {
     required this.bookId,
     required this.title,
     required this.author,
+    required this.bookType,
     required this.genre,
     required this.description,
     required this.coverImg,
