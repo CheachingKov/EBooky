@@ -1,10 +1,11 @@
 import 'package:ebooky/model/book_page.dart';
+import 'book_category.dart';
 
 class Book {
   final String bookId;
   final String title;
   final String author;
-  final String bookType;
+  final BookCategory bookType;
   final String genre;
   final String description;
   final String coverImg;

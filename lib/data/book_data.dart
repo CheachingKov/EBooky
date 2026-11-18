@@ -1,4 +1,5 @@
 import '../model/book.dart';
+import '../model/book_category.dart';
 import '../model/book_page.dart';
 
 final List<Book> sampleBooks = [
@@ -6,7 +7,7 @@ final List<Book> sampleBooks = [
     bookId: 'b1',
     title: 'Algorithms in Practice',
     author: 'Dr. Arthur Pendelton',
-    bookType: 'eBook',
+    bookType: BookCategory.educational,
     genre: 'Technology',
     description: 'A practical guide exploring fundamental data structures and algorithmic thinking.',
     coverImg: 'assets/images/cover_algorithms.png',
@@ -25,7 +26,7 @@ final List<Book> sampleBooks = [
     bookId: 'b2',
     title: 'The Whispering Forest',
     author: 'Elena Vance',
-    bookType: 'eBook',
+    bookType: BookCategory.novel,
     genre: 'Fiction',
     description: 'An adventurous journey through an ancient enchanted forest filled with mysteries.',
     coverImg: 'assets/images/cover_forest.png',
@@ -44,7 +45,7 @@ final List<Book> sampleBooks = [
     bookId: 'b3',
     title: 'The Habit of Success',
     author: 'Marcus Sterling',
-    bookType: 'eBook',
+    bookType: BookCategory.selfHelp,
     genre: 'Business',
     description: 'Principles and strategies for building effective daily routines and productive habits.',
     coverImg: 'assets/images/cover_habits.png',
@@ -54,7 +55,7 @@ final List<Book> sampleBooks = [
     bookId: 'b4',
     title: 'Beyond the Stratosphere',
     author: 'Samantha Wright',
-    bookType: 'eBook',
+    bookType: BookCategory.guides,
     genre: 'Science',
     description: 'An introduction to modern astronomy and the exploration of our solar system.',
     coverImg: 'assets/images/cover_space.png',
