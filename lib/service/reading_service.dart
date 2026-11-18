@@ -12,11 +12,12 @@ class ReadingService {
 
   ReadingService({required this.bookService});
 
-  ReadingProgress? getReadingProgress(String bookId) =>
-      _progressByBookId[bookId];
+  ReadingProgress? getReadingProgress(String bookId) {
+    return _progressByBookId[bookId];
+  }
 
   ReadingProgress updateProgress(String bookId, int page) {
-    final book = _requireBook(bookId);
+    var book = _requireBook(bookId);
     if (!book.hasContent) {
       throw StateError('Book "$bookId" has no reading content');
     }
@@ -24,65 +25,87 @@ class ReadingService {
       throw RangeError.range(page, 1, book.totalPages, 'page');
     }
 
-    final now = _nextActivityTime();
-    final progress = _progressByBookId.putIfAbsent(
-      bookId,
-      () => ReadingProgress(
+    var now = _nextActivityTime();
+    var progress = _progressByBookId[bookId];
+
+    if (progress == null) {
+      progress = ReadingProgress(
         bookId: bookId,
         currentPage: page,
         totalPages: book.totalPages,
         lastReadAt: now,
-      ),
-    );
-    progress
-      ..currentPage = page
-      ..lastReadAt = now;
+      );
+      _progressByBookId[bookId] = progress;
+    } else {
+      progress.currentPage = page;
+      progress.lastReadAt = now;
+    }
+
     return progress;
   }
 
   List<ReadingHistory> getReadingHistory() {
-    final history = List<ReadingHistory>.of(_readingHistory)
-      ..sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
+    List<ReadingHistory> history = [];
+    for (var item in _readingHistory) {
+      history.add(item);
+    }
+    history.sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
     return List.unmodifiable(history);
   }
 
   ReadingHistory recordBookOpened(String bookId) {
-    final book = _requireBook(bookId);
-    final now = _nextActivityTime();
-    final progress = _progressByBookId[bookId];
+    var book = _requireBook(bookId);
+    var now = _nextActivityTime();
+    var progress = _progressByBookId[bookId];
+
+    int lastPage = 1;
     if (progress != null) {
       progress.lastReadAt = now;
+      lastPage = progress.currentPage;
     }
 
-    final history = ReadingHistory(
+    var history = ReadingHistory(
       id: 'reading-history-${_nextHistoryId++}',
       book: book,
-      lastPageRead: progress?.currentPage ?? 1,
+      lastPageRead: lastPage,
       lastReadAt: now,
     );
     _readingHistory.add(history);
     return history;
   }
 
-  List<Book> getContinueReadingBooks() {
-    final progressRecords =
-        _progressByBookId.values
-            .where((progress) => !progress.isCompleted)
-            .toList()
-          ..sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
+  void clearReadingHistory() {
+    _readingHistory.clear();
+  }
 
-    return List.unmodifiable(
-      progressRecords.map((progress) => _requireBook(progress.bookId)),
-    );
+  List<Book> getContinueReadingBooks() {
+    List<ReadingProgress> inProgress = [];
+    for (var progress in _progressByBookId.values) {
+      if (!progress.isCompleted) {
+        inProgress.add(progress);
+      }
+    }
+
+    inProgress.sort((a, b) => b.lastReadAt.compareTo(a.lastReadAt));
+
+    List<Book> books = [];
+    for (var progress in inProgress) {
+      books.add(_requireBook(progress.bookId));
+    }
+    return List.unmodifiable(books);
   }
 
   double calculateProgress(String bookId) {
     _requireBook(bookId);
-    return _progressByBookId[bookId]?.percentage ?? 0.0;
+    var progress = _progressByBookId[bookId];
+    if (progress == null) {
+      return 0.0;
+    }
+    return progress.percentage;
   }
 
   Book _requireBook(String bookId) {
-    final book = bookService.getBookById(bookId);
+    var book = bookService.getBookById(bookId);
     if (book == null) {
       throw ArgumentError.value(bookId, 'bookId', 'Book does not exist');
     }
@@ -90,7 +113,7 @@ class ReadingService {
   }
 
   DateTime _nextActivityTime() {
-    final now = DateTime.now();
+    var now = DateTime.now();
     if (_lastActivityAt == null || now.isAfter(_lastActivityAt!)) {
       _lastActivityAt = now;
     } else {

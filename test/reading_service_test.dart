@@ -77,6 +77,19 @@ void main() {
         throwsUnsupportedError,
       );
     });
+
+    test('clears reading history without deleting reading progress', () {
+      readingService.updateProgress('b1', 2);
+      readingService.recordBookOpened('b1');
+      readingService.recordBookOpened('b2');
+
+      expect(readingService.getReadingHistory(), hasLength(2));
+
+      readingService.clearReadingHistory();
+
+      expect(readingService.getReadingHistory(), isEmpty);
+      expect(readingService.getReadingProgress('b1')?.currentPage, 2);
+    });
   });
 
   group('continue reading', () {
