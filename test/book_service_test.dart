@@ -36,6 +36,7 @@ void main() {
         expect(book!.title, 'Shadows in the Mist');
         expect(book.author, 'Arthur Pendelton');
         expect(book.genre, BookGenre.mystery);
+        expect(book.publishDate, equals(DateTime(2023, 5, 14)));
         expect(book.description, isNotEmpty);
       });
 

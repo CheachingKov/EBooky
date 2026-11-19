@@ -10,6 +10,7 @@ final List<Book> sampleBooks = [
     genre: BookGenre.mystery,
     description: 'A detective unravels a web of secrets in a fog-drenched Victorian town.',
     coverImg: 'assets/images/cover_shadows.png',
+    publishDate: DateTime(2023, 5, 14),
     pages: const [
       BookPage(
         pageNum: 1,
@@ -28,6 +29,7 @@ final List<Book> sampleBooks = [
     genre: BookGenre.fantasy,
     description: 'An adventurous journey through an ancient enchanted forest filled with mysteries.',
     coverImg: 'assets/images/cover_forest.png',
+    publishDate: DateTime(2022, 11, 20),
     pages: const [
       BookPage(
         pageNum: 1,
@@ -46,6 +48,7 @@ final List<Book> sampleBooks = [
     genre: BookGenre.sciFi,
     description: 'A thrilling space opera across uncharted solar systems on the brink of discovery.',
     coverImg: 'assets/images/cover_starlight.png',
+    publishDate: DateTime(2024, 1, 10),
     pages: const [],
   ),
   Book(
@@ -55,6 +58,7 @@ final List<Book> sampleBooks = [
     genre: BookGenre.romance,
     description: 'A heartwarming story of two childhood friends reuniting in a quiet coastal town.',
     coverImg: 'assets/images/cover_autumn.png',
+    publishDate: DateTime(2023, 9, 5),
     pages: const [],
   ),
 ];

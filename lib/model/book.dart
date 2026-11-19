@@ -8,6 +8,7 @@ class Book {
   final BookGenre genre;
   final String description;
   final String coverImg;
+  final DateTime publishDate;
   final List<BookPage> _pages;
 
   Book({
@@ -17,6 +18,7 @@ class Book {
     required this.genre,
     required this.description,
     required this.coverImg,
+    required this.publishDate,
     List<BookPage> pages = const [],
   }) : _pages = List.unmodifiable(pages);
 

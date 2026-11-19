@@ -17,6 +17,7 @@ eBooky makes reading organized and accessible by bringing your novel collection,
 - **Novel Details & Reader** — View novel details, summaries, author info, cover art, and read chapter pages offline.
 - **Personal Library** — Save novels to your library and organize them by status (`Plan to Read`, `Reading`, `Completed`, `Dropped`).
 - **Favorites** — Star favorite novels for instant access.
+- **Reading Lists & Collections** — Create, rename, and manage custom collections with flexible sorting (Alphabetical A–Z by default, Newest added, or Oldest added).
 - **Reading Progress & Continue Reading** — Automatically track current page numbers and completion percentages, with instant "Continue Reading" resumption.
 - **Reading History** — Keep a timestamped record of recently opened novels, with the ability to clear history at any time.
 - **Theme Preferences** — Personalize your experience with Light, Dark, or System mode.
