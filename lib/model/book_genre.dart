@@ -1,0 +1,18 @@
+enum BookGenre {
+  action,
+  adventure,
+  comedy,
+  darkFantasy,
+  drama,
+  fantasy,
+  historical,
+  horror,
+  mystery,
+  psychological,
+  romance,
+  sciFi,
+  school,
+  sliceOfLife,
+  sports,
+  supernatural,
+}

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:ebooky/data/book_data.dart';
-import 'package:ebooky/model/book_category.dart';
+import 'package:ebooky/model/book_genre.dart';
 import 'package:ebooky/service/book_service.dart';
 
 void main() {
@@ -12,9 +12,7 @@ void main() {
   });
 
   group('BookService', () {
-    // ---------------------------------
     // Browse All Books
-    // ---------------------------------
     group('getAllBooks', () {
       test('returns all books from the catalog', () {
         final books = bookService.getAllBooks();
@@ -29,18 +27,15 @@ void main() {
       });
     });
 
-    // ---------------------------------
     // View Book Details (getBookById)
-    // ---------------------------------
     group('getBookById', () {
       test('returns book details when book exists', () {
         final book = bookService.getBookById('b1');
 
         expect(book, isNotNull);
-        expect(book!.title, 'Algorithms in Practice');
-        expect(book.author, 'Dr. Arthur Pendelton');
-        expect(book.genre, 'Technology');
-        expect(book.bookType, BookCategory.educational);
+        expect(book!.title, 'Shadows in the Mist');
+        expect(book.author, 'Arthur Pendelton');
+        expect(book.genre, BookGenre.mystery);
         expect(book.description, isNotEmpty);
       });
 
@@ -55,20 +50,18 @@ void main() {
       });
     });
 
-    // ---------------------------------
     // View Book Details by Title (getBookByTitle)
-    // ---------------------------------
     group('getBookByTitle', () {
       test('returns book details when title matches', () {
-        final book = bookService.getBookByTitle('Algorithms in Practice');
+        final book = bookService.getBookByTitle('Shadows in the Mist');
 
         expect(book, isNotNull);
         expect(book!.bookId, 'b1');
-        expect(book.author, 'Dr. Arthur Pendelton');
+        expect(book.author, 'Arthur Pendelton');
       });
 
       test('matching is case-insensitive and trims whitespace', () {
-        final book = bookService.getBookByTitle('  algorithms in practice  ');
+        final book = bookService.getBookByTitle('  shadows in the mist  ');
 
         expect(book, isNotNull);
         expect(book!.bookId, 'b1');
@@ -85,12 +78,10 @@ void main() {
       });
     });
 
-    // ---------------------------------
     // Search Books
-    // ---------------------------------
     group('searchBooks', () {
       test('searches books by title (case-insensitive substring)', () {
-        final results = bookService.searchBooks('algo');
+        final results = bookService.searchBooks('shadows');
         expect(results, hasLength(1));
         expect(results.first.bookId, 'b1');
       });
@@ -99,6 +90,12 @@ void main() {
         final results = bookService.searchBooks('vance');
         expect(results, hasLength(1));
         expect(results.first.bookId, 'b2');
+      });
+
+      test('searches books by genre name', () {
+        final results = bookService.searchBooks('romance');
+        expect(results, hasLength(1));
+        expect(results.first.bookId, 'b4');
       });
 
       test('returns empty list when no book matches query (book not found)', () {
@@ -112,69 +109,43 @@ void main() {
       });
     });
 
-    // ---------------------------------
     // Filter by Genre
-    // ---------------------------------
     group('getBooksByGenre', () {
       test('filters books matching the genre', () {
-        final techBooks = bookService.getBooksByGenre('Technology');
-        expect(techBooks, hasLength(1));
-        expect(techBooks.first.bookId, 'b1');
+        final mysteryBooks = bookService.getBooksByGenre(BookGenre.mystery);
+        expect(mysteryBooks, hasLength(1));
+        expect(mysteryBooks.first.bookId, 'b1');
       });
 
-      test('matching is case-insensitive', () {
-        final fictionBooks = bookService.getBooksByGenre('fiction');
-        expect(fictionBooks, hasLength(1));
-        expect(fictionBooks.first.bookId, 'b2');
+      test('filters another genre correctly', () {
+        final fantasyBooks = bookService.getBooksByGenre(BookGenre.fantasy);
+        expect(fantasyBooks, hasLength(1));
+        expect(fantasyBooks.first.bookId, 'b2');
       });
 
-      test('returns empty list if genre does not exist', () {
-        final results = bookService.getBooksByGenre('NonExistentGenre');
-        expect(results, isEmpty);
+      test('returns empty list if genre has no books', () {
+        final horrorBooks = bookService.getBooksByGenre(BookGenre.horror);
+        expect(horrorBooks, isEmpty);
       });
 
-      test('returns all books if genre is empty or "all"', () {
-        expect(bookService.getBooksByGenre(''), hasLength(sampleBooks.length));
-        expect(bookService.getBooksByGenre('all'), hasLength(sampleBooks.length));
-      });
-    });
-
-    // ---------------------------------
-    // Filter by Book Type
-    // ---------------------------------
-    group('getBooksByType', () {
-      test('filters books matching the book category', () {
-        final novels = bookService.getBooksByType(BookCategory.novel);
-        expect(novels, hasLength(1));
-        expect(novels.first.bookId, 'b2');
-      });
-
-      test('returns empty list if no books match category', () {
-        final manga = bookService.getBooksByType(BookCategory.manga);
-        expect(manga, isEmpty);
+      test('returns an unmodifiable list', () {
+        expect(
+          () => bookService.getBooksByGenre(BookGenre.mystery).clear(),
+          throwsUnsupportedError,
+        );
       });
     });
 
-    // ---------------------------------
-    // Browse Genres & Types
-    // ---------------------------------
-    group('browse genres and types', () {
-      test('getAllGenres returns unique sorted list of genres', () {
+    // Browse All Genres
+    group('getAllGenres', () {
+      test('returns all predefined BookGenre enum values', () {
         final genres = bookService.getAllGenres();
-        expect(genres, contains('Technology'));
-        expect(genres, contains('Fiction'));
-        expect(genres, contains('Business'));
-        expect(genres, contains('Science'));
-
-        // Check sorted order
-        final sorted = List<String>.of(genres)..sort();
-        expect(genres, equals(sorted));
-      });
-
-      test('getAllBookTypes returns all category enum values', () {
-        final types = bookService.getAllBookTypes();
-        expect(types, contains(BookCategory.novel));
-        expect(types, contains(BookCategory.manga));
+        expect(genres, equals(BookGenre.values));
+        expect(genres, contains(BookGenre.action));
+        expect(genres, contains(BookGenre.fantasy));
+        expect(genres, contains(BookGenre.mystery));
+        expect(genres, contains(BookGenre.romance));
+        expect(genres, contains(BookGenre.sciFi));
       });
     });
   });

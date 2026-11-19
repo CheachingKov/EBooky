@@ -1,24 +1,23 @@
 import '../model/book.dart';
-import '../model/book_category.dart';
+import '../model/book_genre.dart';
 import '../model/book_page.dart';
 
 final List<Book> sampleBooks = [
   Book(
     bookId: 'b1',
-    title: 'Algorithms in Practice',
-    author: 'Dr. Arthur Pendelton',
-    bookType: BookCategory.educational,
-    genre: 'Technology',
-    description: 'A practical guide exploring fundamental data structures and algorithmic thinking.',
-    coverImg: 'assets/images/cover_algorithms.png',
+    title: 'Shadows in the Mist',
+    author: 'Arthur Pendelton',
+    genre: BookGenre.mystery,
+    description: 'A detective unravels a web of secrets in a fog-drenched Victorian town.',
+    coverImg: 'assets/images/cover_shadows.png',
     pages: const [
       BookPage(
         pageNum: 1,
-        content: 'Chapter 1: Introduction to Data Structures\n\nData structures form the foundation of computational problem solving.',
+        content: 'Chapter 1: The Midnight Bell\n\nThe thick fog rolled through the cobblestone streets as the clock tower struck twelve.',
       ),
       BookPage(
         pageNum: 2,
-        content: 'Chapter 2: Computational Complexity\n\nAnalyzing algorithm efficiency requires understanding algorithmic bounds.',
+        content: 'Chapter 2: A Clue in the Dark\n\nDetective Arthur knelt by the lantern light, examining the peculiar golden crest.',
       ),
     ],
   ),
@@ -26,8 +25,7 @@ final List<Book> sampleBooks = [
     bookId: 'b2',
     title: 'The Whispering Forest',
     author: 'Elena Vance',
-    bookType: BookCategory.novel,
-    genre: 'Fiction',
+    genre: BookGenre.fantasy,
     description: 'An adventurous journey through an ancient enchanted forest filled with mysteries.',
     coverImg: 'assets/images/cover_forest.png',
     pages: const [
@@ -43,22 +41,20 @@ final List<Book> sampleBooks = [
   ),
   Book(
     bookId: 'b3',
-    title: 'The Habit of Success',
+    title: 'Echoes of the Starlight',
     author: 'Marcus Sterling',
-    bookType: BookCategory.selfHelp,
-    genre: 'Business',
-    description: 'Principles and strategies for building effective daily routines and productive habits.',
-    coverImg: 'assets/images/cover_habits.png',
+    genre: BookGenre.sciFi,
+    description: 'A thrilling space opera across uncharted solar systems on the brink of discovery.',
+    coverImg: 'assets/images/cover_starlight.png',
     pages: const [],
   ),
   Book(
     bookId: 'b4',
-    title: 'Beyond the Stratosphere',
+    title: 'Beneath the Autumn Sky',
     author: 'Samantha Wright',
-    bookType: BookCategory.guides,
-    genre: 'Science',
-    description: 'An introduction to modern astronomy and the exploration of our solar system.',
-    coverImg: 'assets/images/cover_space.png',
+    genre: BookGenre.romance,
+    description: 'A heartwarming story of two childhood friends reuniting in a quiet coastal town.',
+    coverImg: 'assets/images/cover_autumn.png',
     pages: const [],
   ),
 ];

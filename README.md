@@ -1,51 +1,47 @@
 # 📚 eBooky
 
-**Your books. Your space. Your reading journey.**
+**Your novels. Your space. Your reading journey.**
 
-eBooky is an offline digital reading application that brings book discovery and personal reading organization together. Whether you're interested in technology, fiction, business, education, or personal development, eBooky provides a convenient place to explore books, manage your collection, and keep track of your reading journey.
+eBooky is an offline digital novel reading application designed specifically for novel enthusiasts. Whether you are into fantasy, mystery, sci-fi, romance, action, or slice of life, eBooky provides a distraction-free place to discover novels, organize your personal library, and track your reading journey seamlessly without requiring an internet connection.
 
 ## Why eBooky?
 
-Finding interesting books, keeping track of what you've read, and remembering where you stopped can become difficult when everything is scattered across different platforms or applications.
+Finding captivating novels, keeping track of what you've read, and remembering where you left off can be frustrating when reading across different platforms.
 
-eBooky aims to make reading more organized and accessible by bringing your book collection, reading progress, and personal reading lists together in one application.
+eBooky makes reading organized and accessible by bringing your novel collection, reading progress, and reading history together in one offline-first application.
 
 ## Features
 
-- **Book Discovery** — Browse and explore books across multiple genres.
-- **Book Search** — Find books by title, author, or genre.
-- **Book Details** — View book titles, authors, descriptions, covers, and available reading content.
-- **Personal Library** — Keep selected books organized in one place.
-- **Favorites** — Save books for quick access.
-- **Reading Lists** — Create custom collections to organize books.
-- **Reading Progress** — Track reading positions and completion status.
-- **Reading History** — Keep track of recently opened books.
-- **Theme Preferences** — Choose between light, dark, and system themes.
-- **Offline Access** — Access locally available books and reading information without an internet connection.
+- **Novel Discovery** — Explore a catalog of novels across 16 distinct genres (Fantasy, Sci-Fi, Mystery, Romance, Dark Fantasy, Supernatural, and more).
+- **Search & Filter** — Quickly find novels by title, author, or genre, and filter by type-safe `BookGenre`.
+- **Novel Details & Reader** — View novel details, summaries, author info, cover art, and read chapter pages offline.
+- **Personal Library** — Save novels to your library and organize them by status (`Plan to Read`, `Reading`, `Completed`, `Dropped`).
+- **Favorites** — Star favorite novels for instant access.
+- **Reading Progress & Continue Reading** — Automatically track current page numbers and completion percentages, with instant "Continue Reading" resumption.
+- **Reading History** — Keep a timestamped record of recently opened novels, with the ability to clear history at any time.
+- **Theme Preferences** — Personalize your experience with Light, Dark, or System mode.
+- **100% Offline** — All books, reading content, and library states are stored locally on your device with zero internet required.
 
 ## Target Users
 
-eBooky is designed for students, book enthusiasts, casual readers, and anyone who wants a simple way to discover books, organize their personal collection, and develop consistent reading habits.
-
-## Offline Functionality
-
-eBooky is designed to provide its core reading experience without requiring an internet connection. Book information, reading content, personal library information, and reading progress are intended to be available locally on the device.
+eBooky is designed for novel lovers, fiction readers, students, and anyone who enjoys reading digital novels offline with a clean, organized personal library.
 
 ## Technologies
 
 - **Flutter** — Mobile application framework
-- **Dart** — Programming language
-- **Local Storage** — Offline data 
-- **Flutter Test** — Unit testing
+- **Dart** — Type-safe, object-oriented language
+- **Local Storage** — Offline data persistence
+- **Flutter Test** — Automated unit testing suite
 
 ## Project Structure
 
 ```text
 lib/
-├── model/       # Data models and enums
-└── service/     # Business logic and operations
+├── data/        
+├── model/       
+└── service/     
 
-test/            # Unit tests
+test/          
 ```
 
 ## Project Status
