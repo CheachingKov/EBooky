@@ -119,8 +119,7 @@ void main() {
     });
 
 
-    // F14: Rename Reading List
-
+    //Rename Reading List
     group('renameReadingList (F14)', () {
       test('renames an existing reading list and updates description', () {
         final list = readingListService.createReadingList('Old Name', 'Old Desc');
@@ -172,8 +171,7 @@ void main() {
     });
 
 
-    // F15: Delete Reading List
-
+    //Delete Reading List
     group('deleteReadingList (F15)', () {
       test('deletes an existing reading list and returns true', () {
         final list = readingListService.createReadingList('To Delete');
@@ -201,8 +199,7 @@ void main() {
     });
 
 
-    // F16: Add Book to Reading List
-
+    //Add Book to Reading List
     group('addBookToList (F16)', () {
       test('adds an existing book to a list successfully', () {
         final list = readingListService.createReadingList('Favorites');
@@ -254,8 +251,7 @@ void main() {
     });
 
 
-    // F17: Remove Book from Reading List
-
+    //Remove Book from Reading List
     group('removeBookFromList (F17)', () {
       test('removes a book from a list successfully', () {
         final list = readingListService.createReadingList('Favorites');
@@ -285,8 +281,7 @@ void main() {
     });
 
 
-    // F18: View List Contents & Sorting
-
+    //View List Contents & Sorting
     group('getListBooks (F18)', () {
       test('returns an empty list when reading list has no books', () {
         final list = readingListService.createReadingList('Empty List');
@@ -299,18 +294,11 @@ void main() {
       test('defaults to alphabetical order by title (A-Z)', () {
         final list = readingListService.createReadingList('Mixed List');
 
-        // Sample books:
-        // b1: "Shadows in the Mist"
-        // b2: "The Whispering Forest"
-        // b3: "Echoes of the Starlight"
-        // b4: "Beneath the Autumn Sky"
-        // Add them in random order:
         readingListService.addBookToList(list.id, 'b1');
         readingListService.addBookToList(list.id, 'b2');
         readingListService.addBookToList(list.id, 'b3');
         readingListService.addBookToList(list.id, 'b4');
 
-        // Default should be alphabetical (A-Z)
         final books = readingListService.getListBooks(list.id);
 
         expect(books[0].title, equals('Beneath the Autumn Sky')); // b4
@@ -369,9 +357,6 @@ void main() {
         );
       });
     });
-
-
-    // Bonus & Search Features
 
     group('helper features', () {
       test('getReadingListsForBook finds all lists containing a book', () {
